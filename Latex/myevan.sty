@@ -782,7 +782,6 @@
 
 \fi
 
-\usepackage{amsmath, amssymb, amsfonts, mathtools}
 \usepackage{dsfont}
 \newcommand{\1}{\mathds{1}}
 
@@ -836,10 +835,11 @@
 \renewcommand{\thetable}{\arabic{table}}
 \renewcommand{\theequation}{\arabic{equation}}
 
-\usepackage{tikz}
-\usetikzlibrary{graphs, calc}
+% TikZ already loaded by tikz-cd, "babel" for "ngerman"
+\usetikzlibrary{graphs,calc,angles,quotes,babel}
 \usepackage{pgfplots}
 \pgfplotsset{width=7cm,compat=1.18}\usepgfplotslibrary{fillbetween}
+\usepackage{graphicx}
 
 % Für Title 
 \usepackage{anyfontsize}
@@ -847,4 +847,3 @@
 % Tolle Farben
 \definecolor{primaryColor}{RGB}{34, 197, 94}
 \definecolor{secondaryColor}{RGB}{168, 85, 247}
-\usetikzlibrary{angles,quotes}
