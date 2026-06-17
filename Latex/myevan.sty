@@ -358,145 +358,59 @@
       \usepackage{thmtools}
     \fi
     
-      \usepackage[framemethod=TikZ]{mdframed}
-    \usetikzlibrary{shadows}
-    % https://tex.stackexchange.com/a/292090/76888
-    % https://github.com/marcodaniel/mdframed/issues/12
-    \xpatchcmd{\endmdframed}
-      {\aftergroup\endmdf@trivlist\color@endgroup}
-      {\endmdf@trivlist\color@endgroup\@doendpe}
-      {}{}
+      % Switch from mdframed to tcolorbox
+      \usepackage{tcolorbox}
+      \tcbuselibrary{breakable,skins}
 
-    \mdfdefinestyle{mdbluebox}{%
-    skipabove=8pt,
-      skipbelow=2pt,
-      linewidth=2pt,
-      rightline=false,
-      leftline=true,
-      topline=false,
-      bottomline=false,
-      linecolor=Blue,
-      backgroundcolor=Blue!5
-      %roundcorner=10pt,
-      % linewidth=1pt,
-      % skipabove=12pt,
-      % innerbottommargin=9pt,
-      % skipbelow=2pt,
-      % linecolor=blue,
-      % nobreak=true,
-      % backgroundcolor=TealBlue!5,
-    }
+      \tcbset{
+        tcbbox/.style 2 args={
+          enhanced, breakable, frame hidden,
+          boxrule=0pt, borderline west={2pt}{0pt}{#1},
+          left=10pt, right=10pt, top=5pt, bottom=5pt,
+          colback=#2,
+        },
+        tcbbluebox/.style={
+          tcbbox={Blue}{Blue!5}
+        },
+        tcbgreenbox/.style={
+          tcbbox={primaryColor}{primaryColor!5}
+        },
+        tcbpurplebox/.style={
+          tcbbox={secondaryColor}{secondaryColor!5!gray!5}
+        },
+        tcbblackbox/.style={
+          tcbbox={Black}{RedViolet!5!gray!5}
+        },
+      }
+
     \declaretheoremstyle[
-    headfont=\bfseries\sffamily\color{Blue!70!black},
+      headfont=\bfseries\sffamily\color{Blue!70!black},
       bodyfont=\normalfont,
-      spaceabove=2pt,
-      spacebelow=2pt,
-      mdframed={style=mdbluebox},
+      spaceabove=0pt,
+      spacebelow=0pt,
       headpunct={\\ [3pt]}
-      %postheadspace={0pt}
-      % headfont=\sffamily\bfseries\color{MidnightBlue},
-      % mdframed={style=mdbluebox},
-      % headpunct={\\[3pt]},
     ]{thmbluebox}
 
-    \mdfdefinestyle{mdredbox}{%
-      linewidth=0.5pt,
-      skipabove=12pt,
-      frametitleaboveskip=5pt,
-      frametitlebelowskip=0pt,
-      skipbelow=2pt,
-      frametitlefont=\bfseries,
-      innertopmargin=4pt,
-      innerbottommargin=8pt,
-      nobreak=true,
-      backgroundcolor=Salmon!5,
-      linecolor=RawSienna,
-    }
-    \declaretheoremstyle[
-      headfont=\bfseries\color{RawSienna},
-      mdframed={style=mdredbox},
-      headpunct={\\[3pt]},
-      postheadspace={0pt},
-    ]{thmredbox}
-
-    \mdfdefinestyle{mdgreenbox}{%
-      skipabove=8pt,
-      skipbelow=4pt,
-      linewidth=2pt,
-      rightline=false,
-      leftline=true,
-      topline=false,
-      bottomline=false,
-      %linecolor=ForestGreen,
-      linecolor=primaryColor,
-      %backgroundcolor=ForestGreen!5,
-      backgroundcolor=primaryColor!5,
-    }
     \declaretheoremstyle[
       headfont=\bfseries\sffamily\color{primaryColor!70!black},
       bodyfont=\normalfont,
-      spaceabove=2pt,
-      spacebelow=2pt,
-      mdframed={style=mdgreenbox},
+      spaceabove=0pt,
+      spacebelow=0pt,
       headpunct={\\ [3pt]},
     ]{thmgreenbox}
 
-    \mdfdefinestyle{mdyellowbox}{%
-      skipabove=8pt,
-      skipbelow=4pt,
-      linewidth=2pt,
-      rightline=false,
-      leftline=true,
-      topline=false,
-      bottomline=false,
-      linecolor=Orange!50!Yellow,
-      backgroundcolor=Orange!5!Yellow!5
-    }
-    \declaretheoremstyle[
-      headfont=\bfseries\sffamily\color{Orange!50!Yellow},
-      bodyfont=\normalfont,
-      spaceabove=2pt,
-      spacebelow=2pt,
-      mdframed={style=mdyellowbox},
-      headpunct={\\ [3pt]},
-    ]{thmyellowbox}
-
-    \mdfdefinestyle{mdblackbox}{%
-      skipabove=8pt,
-      linewidth=2pt,
-      rightline=false,
-      leftline=true,
-      topline=false,
-      bottomline=false,
-      linecolor=black,
-      backgroundcolor=RedViolet!5!gray!5,
-    }
     \declaretheoremstyle[
       headfont=\sffamily\bfseries\color{Black},
-      bodyfont=\normalfont\small,
+      bodyfont=\normalfont,
       spaceabove=0pt,
       spacebelow=0pt,
-      mdframed={style=mdblackbox}
     ]{thmblackbox}
 
-    \mdfdefinestyle{mdpurplebox}{%
-      skipabove=8pt,
-      linewidth=2pt,
-      rightline=false,
-      leftline=true,
-      topline=false,
-      bottomline=false,
-     % linecolor=black,
-     linecolor=secondaryColor,
-     % backgroundcolor=RedViolet!5!gray!5,
-     backgroundcolor=secondaryColor!5!gray!5,
-    }
     \declaretheoremstyle[
       headfont=\sffamily\bfseries\color{secondaryColor!70!Black},
-      bodyfont=\normalfont\small,
+      bodyfont=\normalfont,
       spaceabove=0pt,
       spacebelow=0pt,
-      mdframed={style=mdpurplebox}
     ]{thmpurplebox}
 
     \newcommand{\listhack}{$\empty$\vspace{-2em}}
@@ -542,6 +456,37 @@
       \declaretheorem[style=thmbluebox,name=Behauptung,numbered=no]{behauptung*}
       \declaretheorem[style=thmbluebox,name=Conjecture,numbered=no]{conjecture*}
       \declaretheorem[style=thmbluebox,name=Vermutung,numbered=no]{vermutung*}
+
+      \tcolorboxenvironment{theorem}{tcbbluebox}
+      \tcolorboxenvironment{theorem*}{tcbbluebox}
+      \tcolorboxenvironment{satz}{tcbbluebox}
+      \tcolorboxenvironment{satz*}{tcbbluebox}
+      \tcolorboxenvironment{lemma}{tcbbluebox}
+      \tcolorboxenvironment{lemma*}{tcbbluebox}
+      \tcolorboxenvironment{proposition}{tcbbluebox}
+      \tcolorboxenvironment{proposition*}{tcbbluebox}
+      \tcolorboxenvironment{corollary}{tcbbluebox}
+      \tcolorboxenvironment{corollary*}{tcbbluebox}
+      \tcolorboxenvironment{korollar}{tcbbluebox}
+      \tcolorboxenvironment{korollar*}{tcbbluebox}
+      \tcolorboxenvironment{assume}{tcbbluebox}
+
+      \tcolorboxenvironment{definition}{tcbgreenbox}
+      \tcolorboxenvironment{definition*}{tcbgreenbox}
+
+      \tcolorboxenvironment{example}{tcbpurplebox}
+      \tcolorboxenvironment{example*}{tcbpurplebox}
+      \tcolorboxenvironment{beispiel}{tcbpurplebox}
+      \tcolorboxenvironment{beispiel*}{tcbpurplebox}
+
+      \tcolorboxenvironment{assertion}{tcbblackbox}
+      \tcolorboxenvironment{assertion*}{tcbblackbox}
+      \tcolorboxenvironment{behauptung}{tcbblackbox}
+      \tcolorboxenvironment{behauptung*}{tcbblackbox}
+      \tcolorboxenvironment{conjecture}{tcbblackbox}
+      \tcolorboxenvironment{conjecture*}{tcbblackbox}
+      \tcolorboxenvironment{vermutung}{tcbblackbox}
+      \tcolorboxenvironment{vermutung*}{tcbblackbox}
       
       
     \else
@@ -562,6 +507,11 @@
       \declaretheorem[style=thmgreenbox,name=Algorithm,numbered=no]{algorithm*}
       \declaretheorem[style=thmgreenbox,name=Claim,sibling=theorem]{claim}
       \declaretheorem[style=thmgreenbox,name=Claim,numbered=no]{claim*}
+
+      \tcolorboxenvironment{algorithm}{tcbgreenbox}
+      \tcolorboxenvironment{algorithm*}{tcbgreenbox}
+      \tcolorboxenvironment{claim}{tcbgreenbox}
+      \tcolorboxenvironment{claim*}{tcbgreenbox}
     \else
       \declaretheorem[name=Algorithm,sibling=theorem]{algorithm}
       \declaretheorem[name=Algorithm,numbered=no]{algorithm*}
@@ -578,6 +528,11 @@
 
       \declaretheorem[style=thmblackbox,name=Remark,sibling=theorem]{remark}
       \declaretheorem[style=thmblackbox,name=Remark,numbered=no]{remark*}
+
+      \tcolorboxenvironment{remark}{tcbblackbox}
+      \tcolorboxenvironment{remark*}{tcbblackbox}
+      \tcolorboxenvironment{bemerkung}{tcbblackbox}
+      \tcolorboxenvironment{bemerkung*}{tcbblackbox}
     \else
       %\declaretheorem[name=Remark,sibling=theorem]{remark}
       %\declaretheorem[name=Remark,numbered=no]{remark*}
