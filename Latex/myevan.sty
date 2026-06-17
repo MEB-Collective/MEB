@@ -317,7 +317,8 @@
     \PassOptionsToPackage{usenames,svgnames,dvipsnames,table}{xcolor}
     \usepackage{xcolor}
     \ifevanbib
-      \usepackage[backend=biber,backref=true,style=alphabetic]{biblatex}
+      % MEB edit: change style from alphabetic to numberic
+      \usepackage[backend=biber,backref=true,style=numeric]{biblatex}
       \DeclareFieldFormat{labelalpha}{\textbf{\small #1}} % citation ID's in small-bold
       \DefineBibliographyStrings{english}{%
         backrefpage  = {cited p.}, % for single page number
@@ -524,7 +525,7 @@
       \declaretheorem[style=thmpurplebox,name=Example,sibling=theorem]{example}
       \declaretheorem[style=thmpurplebox,name=Beispiel,sibling=theorem]{beispiel}
       \declaretheorem[style=thmgreenbox,name=Definition,sibling=theorem]{definition}
-      \declaretheorem[style=thmpurplebox,name=Example,sibling=theorem]{example*}
+      \declaretheorem[style=thmpurplebox,name=Example,numbered=no]{example*}
       \declaretheorem[style=thmpurplebox,name=Beispiel,numbered=no]{beispiel*}
       \declaretheorem[style=thmgreenbox,name=Definition,numbered=no]{definition*}
       
@@ -781,7 +782,6 @@
 
 \fi
 
-\usepackage{amsmath, amssymb, amsfonts, mathtools}
 \usepackage{dsfont}
 \newcommand{\1}{\mathds{1}}
 
@@ -789,12 +789,12 @@
 % für Formatierung der Seite und des Textes innerhalb der Seite
 \usepackage[a4paper, lmargin=2cm, tmargin=3cm, bmargin=3cm, rmargin=2cm]{geometry}
 \setlength\parindent{0pt}
+\setlength\parskip{.2\baselineskip plus 2pt}
 \usepackage{setspace}
 \onehalfspacing
 
 % for quotes
-\usepackage{csquotes}
-\usepackage{dirtytalk}
+\usepackage[babel=true]{csquotes}
 
 % Essay setup 
 %% for the title
@@ -830,19 +830,17 @@
 %% for the blurb
 \newcommand{\authorblurb}[1]{\begin{center}\rule{10cm}{0.5pt}\end{center} \begin{center}\parbox{10cm}{\textit{#1}}\end{center}}
 
-%% for the references
-\usepackage[subsectionbib]{bibunits}
-
 %% Numbering format (no section prefix)
 \renewcommand{\thetheorem}{\arabic{theorem}}
 \renewcommand{\thefigure}{\arabic{figure}}
 \renewcommand{\thetable}{\arabic{table}}
 \renewcommand{\theequation}{\arabic{equation}}
 
-\usepackage{tikz}
-\usetikzlibrary{graphs, calc}
+% TikZ already loaded by tikz-cd, "babel" for "ngerman"
+\usetikzlibrary{graphs,calc,angles,quotes,babel}
 \usepackage{pgfplots}
 \pgfplotsset{width=7cm,compat=1.18}\usepgfplotslibrary{fillbetween}
+\usepackage{graphicx}
 
 % Für Title 
 \usepackage{anyfontsize}
@@ -850,4 +848,3 @@
 % Tolle Farben
 \definecolor{primaryColor}{RGB}{34, 197, 94}
 \definecolor{secondaryColor}{RGB}{168, 85, 247}
-\usetikzlibrary{angles,quotes}
